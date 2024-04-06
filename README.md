@@ -9,6 +9,29 @@ This web application allows users to translate text, voice messages, and uploade
 - Translate uploaded files into the desired language.
 - Utilizes CloudFlare's open models for translation and speech-to-text.
 
+## Installation Instructions
+
+To use the translation service provided by our worker, follow these steps:
+
+1. **Integration**: Integrate the translation functionality into your web application by making HTTP requests to the worker endpoint.
+
+2. **Endpoint**: Send POST requests to the following endpoint:
+
+https://translator-ai.elmerurbina570.workers.dev/
+
+
+3. **Request Format**: Ensure that your request payload is formatted as JSON and includes the following fields:
+- `text`: The text to be translated.
+- `targetLanguage`: The target language code for translation (e.g., `"es"` for Spanish, `"fr"` for French).
+
+4. **Example Request**:
+```json
+{
+    "text": "Hello, how are you?",
+    "targetLanguage": "es"
+}
+
+
 ## Deployment
 
 The web application is deployed and accessible at the following URL:
