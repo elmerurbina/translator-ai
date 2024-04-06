@@ -23,9 +23,38 @@ async function translateText() {
       document.getElementById('translatedText').innerText = 'Translation error. Please try again.';
     }
   }
-  
   function startDictation() {
-    // Implement speech-to-text functionality here if needed
-    alert('Speech-to-text functionality is not implemented yet.');
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = document.getElementById('languageSelect').value; // Set language based on selected option
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+  
+      recognition.start();
+  
+      recognition.onresult = async (event) => {
+        const transcript = event.results[0][0].transcript;
+  
+        // Perform translation
+        try {
+          const targetLanguage = document.getElementById('languageSelect').value;
+          const translatedText = await translateText(transcript, targetLanguage);
+          document.getElementById('translatedText').innerText = translatedText;
+        } catch (error) {
+          console.error('Translation error:', error);
+          document.getElementById('translatedText').innerText = 'Translation error. Please try again.';
+        }
+  
+        recognition.stop();
+      };
+  
+      recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+        alert('Speech recognition encountered an error. Please try again.');
+      };
+    } else {
+      alert('Speech recognition is not supported by your browser.');
+    }
   }
+  
   
