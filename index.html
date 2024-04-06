@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Translation App</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+    <div class="container">
+        <h1>AI Translation App</h1>
+        <div class="input-section">
+            <textarea id="textInput" placeholder="Enter text to translate..."></textarea>
+            <label for="languageSelect">Translate to:</label>
+            <select id="languageSelect">
+                <option value="en">English</option>
+                <option value="zh">Chinese</option>
+                <option value="es">Spanish</option>
+                <option value="de">German</option>
+            </select>
+            <input type="file" id="fileInput">
+            <button onclick="translateText()">Translate</button>
+            <button onclick="startDictation()">
+                <img src="microphone-solid.svg" alt="Microphone" width="20" height="20">
+            </button>
+        </div>
+        <div class="output-section">
+            <h2>Translated information</h2>
+            <div id="translatedText"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script> 
+    <script src="index.js"></script>
+</body>
+</html>
